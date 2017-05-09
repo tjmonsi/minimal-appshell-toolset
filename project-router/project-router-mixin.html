@@ -129,6 +129,7 @@
           for (var i in pages) {
             var element = pages[i]
             if (element && element.hasAttribute && element.hasAttribute('route')) {
+              element.classList.add('page')
               var route = element.getAttribute('route')
               var title = element.getAttribute('title')
               var auth = element.getAttribute('auth-path')
