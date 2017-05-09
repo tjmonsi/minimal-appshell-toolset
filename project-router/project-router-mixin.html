@@ -461,15 +461,12 @@
             this.$.viewport.select(route)
           } else {
             for (var i in this._routes) {
-              this._routes[i].element.classList.add('page')
-              this._routes[i].element.classList.remove('page-on-view')
+              this._routes[i].element.classList.remove('page--on-view')
             }
             if (this._routes[route]) {
-              this._routes[route].element.classList.remove('page')
-              this._routes[route].element.classList.add('page-on-view')
+              this._routes[route].element.classList.add('page--on-view')
             } else {
-              this._routes['not-found'].element.classList.remove('page')
-              this._routes['not-found'].element.classList.add('page-on-view')
+              this._routes['not-found'].element.classList.add('page--on-view')
             }
           }
         }
