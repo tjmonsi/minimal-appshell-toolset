@@ -341,7 +341,8 @@
           // if the view has not been loaded, call the importLazyGroup method from LazyGroupBehaviors
           // to load the element and push the result to the promise
           if (!this._routes[this._newView].resolved) {
-            if (this._routes[this._newView].element.constructor.name === 'HTMLElement' || this._routes[this._newView].element.constructor.name === 'HTMLUnknownElement') {
+            if (this._routes[this._newView].element.constructor.name === 'HTMLElement' || this._routes[this._newView].element.constructor.name === 'HTMLUnknownElement' ||
+              this._routes[this._newView].element.constructor === window.HTMLElement || this._routes[this._newView].element.constructor === window.HTMLUnknownElement) {
               var lazyGroupPromise = this.importLazyGroup(newView.element.tagName.toLocaleLowerCase(), this._fromElement)
               if (!(lazyGroupPromise instanceof Promise)) {
                 lazyGroupPromise = Promise.resolve()
@@ -367,7 +368,9 @@
             // which means the definition wasn't loaded, then set the view to not-found
             if (this._routes[this._newView].resolved.loaded.length === 0 ||
                 newView.element.constructor === window.HTMLElement ||
-                newView.element.constructor === window.HTMLUnknownElement) {
+                newView.element.constructor === window.HTMLUnknownElement ||
+                newView.element.constructor.name === 'HTMLElement' ||
+                newView.element.constructor.name === 'HTMLUnknownElement') {
               if (this._newView !== 'not-found') {
                 this._newView = 'not-found'
                 return this._changeView()
